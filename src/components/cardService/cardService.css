@@ -1,0 +1,41 @@
+.CardService {
+  margin: 20px 10px;
+  width: 300px;
+  height: 320px;
+  text-align: center;
+}
+.CardService .card-header {
+  background: rgba(0, 127, 255, 0.8);
+  color: white;
+}
+
+.CardService .card-subtitle {
+  font-size: 1.23em;
+}
+
+.CardService .card-body {
+  display: flex;
+  padding-bottom: 0;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.CardService .card-body.afiliado {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.CardService .info .stars {
+  font-size: 35px;
+  color: gold;
+}
+.CardService .info p {
+  margin: 0;
+}
+.CardService .services::after {
+  content: ', ';
+}
+.CardService .services:last-child::after {
+  content: '';
+}
