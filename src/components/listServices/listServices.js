@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getServiceList, loadMore } from '../../actions';
 import CardService from '../cardService/cardService';
+import Alert from 'react-bootstrap/Alert';
 import LoadingSpinner from '../loading/LoadingSpinner';
 import debounce from 'lodash/debounce';
 import './listServices.css';
@@ -40,11 +41,21 @@ class ListServices extends React.Component {
   };
 
   render() {
-    return this.props.service && this.props.service.data ? (
-      <div className="ListService">{this.renderCards()}</div>
-    ) : (
-      <LoadingSpinner />
-    );
+    if (this.props.service && this.props.service.error) {
+      return (
+        <Alert
+          style={{ maxWidth: '500px', margin: '10px auto' }}
+          variant="warning"
+        >
+          Ouve um erro ao cerregar a página. Tente novamente mais tarde ou
+          contate o administrador
+        </Alert>
+      );
+    }
+    if (this.props.service && this.props.service.data) {
+      return <div className="ListService">{this.renderCards()}</div>;
+    }
+    return <LoadingSpinner />;
   }
 }
 const mapDispatchToProps = state => {
